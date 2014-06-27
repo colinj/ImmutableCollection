@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{6F6A640C-3832-496A-9579-14A4C5BA7D7A}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="ImmutableDemo.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\Test\ImmutableDemoTests.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="ImmutableDemo">
+			<MSBuild Projects="ImmutableDemo.dproj"/>
+		</Target>
+		<Target Name="ImmutableDemo:Clean">
+			<MSBuild Projects="ImmutableDemo.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="ImmutableDemo:Make">
+			<MSBuild Projects="ImmutableDemo.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="ImmutableDemoTests">
+			<MSBuild Projects="..\Test\ImmutableDemoTests.dproj"/>
+		</Target>
+		<Target Name="ImmutableDemoTests:Clean">
+			<MSBuild Projects="..\Test\ImmutableDemoTests.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="ImmutableDemoTests:Make">
+			<MSBuild Projects="..\Test\ImmutableDemoTests.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="ImmutableDemo;ImmutableDemoTests"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="ImmutableDemo:Clean;ImmutableDemoTests:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="ImmutableDemo:Make;ImmutableDemoTests:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>
